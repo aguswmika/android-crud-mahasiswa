@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="id.aguswmika.mahasiswadrawer.ui.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_mahasiswa_create"
+        android:name="id.aguswmika.mahasiswadrawer.ui.MahasiswaCreateFragment"
+        android:label="@string/menu_mahasiswa"
+        tools:layout="@layout/fragment_mahasiswa_create" />
+
+    <fragment
+        android:id="@+id/nav_about"
+        android:name="id.aguswmika.mahasiswadrawer.ui.AboutFragment"
+        android:label="@string/menu_about"
+        tools:layout="@layout/fragment_about" />
+
+    <fragment
+        android:id="@+id/nav_mahasiswa_list"
+        android:name="id.aguswmika.mahasiswadrawer.ui.MahasiswaListFragment"
+        android:label="@string/list_mahasiswa"
+        tools:layout="@layout/fragment_mahasiswa_list" />
+
+    <fragment
+        android:id="@+id/nav_mahasiswa_list_pref"
+        android:name="id.aguswmika.mahasiswadrawer.ui.MahasiswaListFragmentPref"
+        android:label="List Mahasiswa Pref"
+        tools:layout="@layout/fragment_mahasiswa_list_pref" />
+
+</navigation>
