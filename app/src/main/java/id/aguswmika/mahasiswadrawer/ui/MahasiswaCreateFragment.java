@@ -1,6 +1,5 @@
 package id.aguswmika.mahasiswadrawer.ui;
 
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,37 +16,30 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.google.gson.Gson;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 
 import id.aguswmika.mahasiswadrawer.R;
-import id.aguswmika.mahasiswadrawer.function.FileManage;
-import id.aguswmika.mahasiswadrawer.function.SharedManage;
-import id.aguswmika.mahasiswadrawer.model.Mahasiswa;
-import id.aguswmika.mahasiswadrawer.model.MahasiswaList;
-import id.aguswmika.mahasiswadrawer.viewModel.MahasiswaModel;
+import id.aguswmika.mahasiswadrawer.function.ApiClient;
+import id.aguswmika.mahasiswadrawer.function.ApiInterface;
+import id.aguswmika.mahasiswadrawer.model.MahasiswaFormResult;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MahasiswaCreateFragment extends Fragment {
     private Button submit;
     private EditText nama, nim, alamat;
     private Spinner program_studi;
-    private MahasiswaModel model;
-    private FileManage file;
-    private SharedManage share;
+    private ApiInterface apiInterface;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         return inflater.inflate(R.layout.fragment_mahasiswa_create, container, false);
     }
 
@@ -57,8 +49,7 @@ public class MahasiswaCreateFragment extends Fragment {
 
         final NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
 
-        file = new FileManage(requireContext());
-        share = new SharedManage(requireContext());
+        apiInterface = ApiClient.getClient().create(ApiInterface.class);
 
         submit = view.findViewById(R.id.submit);
         nama = view.findViewById(R.id.nama);
@@ -66,7 +57,7 @@ public class MahasiswaCreateFragment extends Fragment {
         alamat = view.findViewById(R.id.alamat);
         program_studi = view.findViewById(R.id.program_studi);
 
-        model = new ViewModelProvider(requireActivity()).get(MahasiswaModel.class);
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -91,58 +82,22 @@ public class MahasiswaCreateFragment extends Fragment {
                 }
 
                 if(errors == 0) {
-//                    List<String> files = Arrays.asList(getContext().fileList());
-                    Gson gson = new Gson();
+                    Call<MahasiswaFormResult> createCall = apiInterface.addMahasiswa(nim.getText().toString(), nama.getText().toString(), program_studi.getSelectedItem().toString(), alamat.getText().toString());
+                    createCall.enqueue(new Callback<MahasiswaFormResult>() {
+                        @Override
+                        public void onResponse(Call<MahasiswaFormResult> call, Response<MahasiswaFormResult> response) {
+                            assert response.body() != null;
+                            Log.e("e", response.body().getMessage());
+                            Toast.makeText(getContext(), "Berhasil menyimpan " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
 
-                    try {
-                        String listMahasiswa = file.read();
-                        String listMahasiswaPref = share.read("mahasiswa");
-
-                        MahasiswaList mahasiswas = gson.fromJson(listMahasiswa, MahasiswaList.class);
-                        MahasiswaList mahasiswasPref = gson.fromJson(listMahasiswaPref, MahasiswaList.class);
-
-                        if(mahasiswas == null){
-                            mahasiswas = new MahasiswaList();
+//                            navController.navigate(R.id.nav_mahasiswa_list);
                         }
 
-                        if(mahasiswasPref == null){
-                            mahasiswasPref = new MahasiswaList();
+                        @Override
+                        public void onFailure(Call<MahasiswaFormResult> call, Throwable t) {
+                            Log.e("Retrofit Get", t.toString());
                         }
-
-                        mahasiswas.addMahasiswa(new Mahasiswa(
-                            nim.getText().toString(),
-                            nama.getText().toString(),
-                            alamat.getText().toString(),
-                            program_studi.getSelectedItem().toString()
-                        ));
-
-                        mahasiswasPref.addMahasiswa(new Mahasiswa(
-                                nim.getText().toString(),
-                                nama.getText().toString(),
-                                alamat.getText().toString(),
-                                program_studi.getSelectedItem().toString()
-                        ));
-
-
-                        file.write(gson.toJson(mahasiswas));
-
-                        share.write("mahasiswa", gson.toJson(mahasiswasPref));
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-
-//                    Log.d("hasol", gson.toJson(new Mahasiswa(
-//                            nim.getText().toString(),
-//                            nama.getText().toString(),
-//                            alamat.getText().toString(),
-//                            program_studi.getSelectedItem().toString()
-//                    )));
-
-//                    model.add(new Mahasiswa(nim.getText().toString(), nama.getText().toString(), alamat.getText().toString(), program_studi.getSelectedItem().toString()));
-
-                    Toast.makeText(getContext(), "Berhasil menyimpan " + nama.getText(), Toast.LENGTH_SHORT).show();
-
-                    navController.navigate(R.id.nav_mahasiswa_list);
+                    });
                 }
             }
         });

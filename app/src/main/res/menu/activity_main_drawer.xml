@@ -10,9 +10,6 @@
         <item
             android:id="@+id/nav_mahasiswa_list"
             android:title="@string/list_mahasiswa" />
-        <item
-            android:id="@+id/nav_mahasiswa_list_pref"
-            android:title="List Mahasiswa SharePref" />
 <!--        <item-->
 <!--            android:id="@+id/nav_mahasiswa_create"-->
 <!--            android:title="@string/menu_mahasiswa" />-->
