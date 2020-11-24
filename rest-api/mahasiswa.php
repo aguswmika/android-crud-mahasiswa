@@ -119,7 +119,7 @@ switch($method){
             //FCM API end-point
             $url = 'https://fcm.googleapis.com/fcm/send';
             //api_key in Firebase Console -> Project Settings -> CLOUD MESSAGING -> Server key
-            $server_key = 'AAAADsmftBY:APA91bHh_ie17kx0GtkHMZ_QX6_aPmdd_MrStAaluPo9X_wvbZ__0CzsW4uxEv20rXLvQTllE2SQn54eRPNuutIGtxmf1x35-MOKhu3UYDkU3ddo2tdGLrMLRStaG00P0im6PhLRsEqG';
+            $server_key = '';
             //header with content_type api key
             $headers = array(
                 'Content-Type:application/json',
