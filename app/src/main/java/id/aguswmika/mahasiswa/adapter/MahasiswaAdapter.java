@@ -1,4 +1,4 @@
-package id.aguswmika.mahasiswadrawer.adapter;
+package id.aguswmika.mahasiswa.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.io.InputStream;
 import java.util.List;
 
-import id.aguswmika.mahasiswadrawer.R;
-import id.aguswmika.mahasiswadrawer.model.Mahasiswa;
+import id.aguswmika.mahasiswa.R;
+import id.aguswmika.mahasiswa.model.Mahasiswa;
 
 public class MahasiswaAdapter extends RecyclerView.Adapter<MahasiswaAdapter.ViewHolder> {
     private List<Mahasiswa> mahasiswaList;

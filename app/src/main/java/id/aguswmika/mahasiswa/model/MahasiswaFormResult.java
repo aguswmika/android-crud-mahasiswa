@@ -1,4 +1,4 @@
-package id.aguswmika.mahasiswadrawer.model;
+package id.aguswmika.mahasiswa.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -16,11 +16,7 @@ public class MahasiswaFormResult {
         this.status = status;
     }
 
-    public String getMessage() {
-        return message;
-    }
+    public String getMessage() { return message; }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+    public void setMessage(String message) { this.message = message; }
 }

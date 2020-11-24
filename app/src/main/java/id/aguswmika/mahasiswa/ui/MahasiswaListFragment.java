@@ -1,4 +1,4 @@
-package id.aguswmika.mahasiswadrawer.ui;
+package id.aguswmika.mahasiswa.ui;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -17,24 +17,25 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-import id.aguswmika.mahasiswadrawer.R;
-import id.aguswmika.mahasiswadrawer.adapter.MahasiswaAdapter;
-import id.aguswmika.mahasiswadrawer.function.ApiClient;
-import id.aguswmika.mahasiswadrawer.function.ApiInterface;
-import id.aguswmika.mahasiswadrawer.model.Mahasiswa;
-import id.aguswmika.mahasiswadrawer.model.MahasiswaListResult;
+import id.aguswmika.mahasiswa.R;
+import id.aguswmika.mahasiswa.adapter.MahasiswaAdapter;
+import id.aguswmika.mahasiswa.database.DatabaseHandler;
+import id.aguswmika.mahasiswa.function.ApiClient;
+import id.aguswmika.mahasiswa.function.ApiInterface;
+import id.aguswmika.mahasiswa.model.Mahasiswa;
+import id.aguswmika.mahasiswa.model.MahasiswaListResult;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MahasiswaListFragment extends Fragment {
 
-    Button mahasiswa_create_btn;
+    Button createBtn;
     ApiInterface apiInterface;
-    RecyclerView mahasiswa_list;
+    RecyclerView recycler;
     MahasiswaAdapter adapter;
 
 
@@ -48,39 +49,40 @@ public class MahasiswaListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
-        mahasiswa_create_btn = (Button) view.findViewById(R.id.mahasiswa_create_btn);
+        ApiInterface apiClient = ApiClient.getClient().create(ApiInterface.class);
 
-        mahasiswa_create_btn.setOnClickListener(new View.OnClickListener() {
+        final NavController navController = Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
+        createBtn = (Button) view.findViewById(R.id.createBtn);
+
+        createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
             navController.navigate(R.id.nav_mahasiswa_create);
             }
         });
 
-        mahasiswa_list = view.findViewById(R.id.mahasiswa_list);
-        mahasiswa_list.setLayoutManager(new LinearLayoutManager(requireActivity()));
+        recycler = view.findViewById(R.id.mahasiswaRecycler);
+        recycler.setLayoutManager(new LinearLayoutManager(requireActivity()));
 
-        apiInterface = ApiClient.getClient().create(ApiInterface.class);
+        /*
+        DatabaseHandler db = new DatabaseHandler(requireContext());
 
+        List<Mahasiswa> listMahasiswa = db.findAll();
+         */
 
-        Call<MahasiswaListResult> mahasiswaListCall = apiInterface.getMahasiswa();
+        Call<MahasiswaListResult> getCall = apiClient.getMahasiswa();
 
-
-        mahasiswaListCall.enqueue(new Callback<MahasiswaListResult>() {
+        getCall.enqueue(new Callback<MahasiswaListResult>() {
             @Override
             public void onResponse(Call<MahasiswaListResult> call, Response<MahasiswaListResult> response) {
                 assert response.body() != null;
-                List<Mahasiswa> mahasiswaList = response.body().getData();
-                Log.d("Retrofit Get", "Jumlah data Kontak: "+mahasiswaList.size());
-
-                adapter = new MahasiswaAdapter(mahasiswaList);
-                mahasiswa_list.setAdapter(adapter);
+                adapter = new MahasiswaAdapter(response.body().getData());
+                recycler.setAdapter(adapter);
             }
 
             @Override
             public void onFailure(Call<MahasiswaListResult> call, Throwable t) {
-                Log.e("Retrofit Get", t.toString());
+                Log.e("Error", Objects.requireNonNull(t.getMessage()));
             }
         });
     }

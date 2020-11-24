@@ -1,4 +1,4 @@
-package id.aguswmika.mahasiswadrawer.model;
+package id.aguswmika.mahasiswa.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -21,19 +21,31 @@ public class Mahasiswa {
         this.program_studi = program_studi;
     }
 
+    public String getNim() {
+        return nim;
+    }
+
+    public void setNim(String nim) { this.nim = nim; }
+
     public String getNama() {
         return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
     }
 
     public String getAlamat() {
         return alamat;
     }
 
-    public String getNim() {
-        return nim;
-    }
+    public void setAlamat(String alamat) { this.alamat = alamat; }
 
     public String getProgramStudi() {
         return program_studi;
+    }
+
+    public void setProgramStudi(String program_studi) {
+        this.program_studi = program_studi;
     }
 }

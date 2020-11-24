@@ -1,4 +1,4 @@
-package id.aguswmika.mahasiswadrawer.ui;
+package id.aguswmika.mahasiswa.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import id.aguswmika.mahasiswadrawer.R;
-import id.aguswmika.mahasiswadrawer.model.Mahasiswa;
-import id.aguswmika.mahasiswadrawer.viewModel.MahasiswaModel;
+import id.aguswmika.mahasiswa.R;
+import id.aguswmika.mahasiswa.model.Mahasiswa;
+import id.aguswmika.mahasiswa.viewModel.MahasiswaModel;
 
 public class AboutFragment extends Fragment {
 
@@ -33,17 +33,17 @@ public class AboutFragment extends Fragment {
         model.get().observe(getViewLifecycleOwner(), new Observer<Mahasiswa>() {
             @Override
             public void onChanged(Mahasiswa mhs) {
-                TextView nama = view.findViewById(R.id.nama_text);
-                nama.setText(mhs.getNama());
+            TextView nama = view.findViewById(R.id.namaLbl);
+            nama.setText(mhs.getNama());
 
-                TextView nim = view.findViewById(R.id.nim_text);
-                nim.setText(mhs.getNim());
+            TextView nim = view.findViewById(R.id.nimLbl);
+            nim.setText(mhs.getNim());
 
-                TextView alamat = view.findViewById(R.id.alamat_text);
-                alamat.setText(mhs.getAlamat());
+            TextView alamat = view.findViewById(R.id.alamatTxt);
+            alamat.setText(mhs.getAlamat());
 
-                TextView program_studi = view.findViewById(R.id.program_studi_text);
-                program_studi.setText(mhs.getProgramStudi());
+            TextView program_studi = view.findViewById(R.id.programStudiTxt);
+            program_studi.setText(mhs.getProgramStudi());
             }
         });
 

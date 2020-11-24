@@ -1,12 +1,14 @@
-package id.aguswmika.mahasiswadrawer.model;
+package id.aguswmika.mahasiswa.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class MahasiswaSingleResult {
+import java.util.List;
+
+public class MahasiswaListResult {
     @SerializedName("status")
     private String status;
     @SerializedName("data")
-    private Mahasiswa data;
+    private List<Mahasiswa> data;
 
     public String getStatus() {
         return status;
@@ -16,11 +18,12 @@ public class MahasiswaSingleResult {
         this.status = status;
     }
 
-    public Mahasiswa getData() {
+    public List<Mahasiswa> getData() {
         return data;
     }
 
-    public void setData(Mahasiswa data) {
+    public void setData(List<Mahasiswa> data) {
         this.data = data;
     }
+
 }

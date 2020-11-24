@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:id="@+id/nama_text"
+                android:id="@+id/namaLbl"
                 android:text="Tidak ada"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:id="@+id/nim_text"
+                android:id="@+id/nimLbl"
                 android:text="Tidak ada"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:id="@+id/program_studi_text"
+                android:id="@+id/programStudiTxt"
                 android:text="Tidak ada"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"/>
 
             <TextView
-                android:id="@+id/alamat_text"
+                android:id="@+id/alamatTxt"
                 android:text="Tidak ada"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

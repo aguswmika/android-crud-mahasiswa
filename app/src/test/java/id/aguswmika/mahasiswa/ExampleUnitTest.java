@@ -1,4 +1,4 @@
-package id.aguswmika.mahasiswadrawer;
+package id.aguswmika.mahasiswa;
 
 import org.junit.Test;
 

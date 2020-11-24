@@ -1,4 +1,4 @@
-package id.aguswmika.mahasiswadrawer.function;
+package id.aguswmika.mahasiswa.function;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

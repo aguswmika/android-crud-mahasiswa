@@ -1,4 +1,4 @@
-package id.aguswmika.mahasiswadrawer;
+package id.aguswmika.mahasiswa;
 
 import android.os.Bundle;
 
@@ -12,7 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class DrawerActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -25,8 +25,7 @@ public class DrawerActivity extends AppCompatActivity {
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_about, R.id.nav_mahasiswa_list)
                 .setOpenableLayout(drawer)

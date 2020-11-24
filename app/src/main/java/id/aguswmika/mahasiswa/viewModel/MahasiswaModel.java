@@ -1,10 +1,10 @@
-package id.aguswmika.mahasiswadrawer.viewModel;
+package id.aguswmika.mahasiswa.viewModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import id.aguswmika.mahasiswadrawer.model.Mahasiswa;
+import id.aguswmika.mahasiswa.model.Mahasiswa;
 
 public class MahasiswaModel extends ViewModel {
     private final MutableLiveData<Mahasiswa> mahasiswa = new MutableLiveData<Mahasiswa>();

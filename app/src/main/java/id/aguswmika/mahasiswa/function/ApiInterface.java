@@ -1,8 +1,8 @@
-package id.aguswmika.mahasiswadrawer.function;
+package id.aguswmika.mahasiswa.function;
 
-import id.aguswmika.mahasiswadrawer.model.MahasiswaFormResult;
-import id.aguswmika.mahasiswadrawer.model.MahasiswaListResult;
-import id.aguswmika.mahasiswadrawer.model.MahasiswaSingleResult;
+import id.aguswmika.mahasiswa.model.MahasiswaFormResult;
+import id.aguswmika.mahasiswa.model.MahasiswaListResult;
+import id.aguswmika.mahasiswa.model.MahasiswaSingleResult;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;

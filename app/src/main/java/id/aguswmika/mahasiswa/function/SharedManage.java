@@ -1,4 +1,4 @@
-package id.aguswmika.mahasiswadrawer.function;
+package id.aguswmika.mahasiswa.function;
 
 import android.content.Context;
 import android.content.SharedPreferences;
